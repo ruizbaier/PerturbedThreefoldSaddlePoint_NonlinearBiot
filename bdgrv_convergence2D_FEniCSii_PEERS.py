@@ -4,16 +4,16 @@ import sympy2fenics as sf
 from scipy.linalg import eigh
 import numpy as np
 
-parameters["form_compiler"]["representation"] = "uflacs"
-parameters["form_compiler"]["cpp_optimize"] = True
-parameters["form_compiler"]["quadrature_degree"] = 4
+# parameters["form_compiler"]["representation"] = "uflacs"
+# parameters["form_compiler"]["cpp_optimize"] = True
+# parameters["form_compiler"]["quadrature_degree"] = 4
 
 def str2exp(s):
     return sf.sympy2exp(sf.str2sympy(s))
 
 def tensorify_skew(r):
-        return as_tensor((( 0,r[0]),
-                          (-r[0],0)))
+        return as_tensor((( 0,r),
+                          (-r,0)))
 
 # ******* Model parameters ****** #    
 ndim = 2
@@ -28,7 +28,7 @@ alpha = Constant(0.25)
 symmgr = lambda v: sym(grad(v))
 skewgr = lambda v: grad(v) - symmgr(v)
 curlBub = lambda vec: as_tensor([[vec[0].dx(1), -vec[0].dx(0)], [vec[1].dx(1), -vec[1].dx(0)]])
-CinvTimes = lambda s: 0.5/mu * s - lmbda/(2.*mu*(ndim*lmbda+2.*mu))*tr(s)*I
+CTimes = lambda s: 2.*mu * s + lmbda*tr(s)*I
 
 def fractional_norm(f, fh, s, degree_rise=1, gamma=10):
     '''||f-fh||_s in H^s DG norm with penalry gamma'''
@@ -46,7 +46,7 @@ def fractional_norm(f, fh, s, degree_rise=1, gamma=10):
     # full H1 inner product to get something invertible, but if BCs are of concern we should modify
     n = FacetNormal(mesh)
     hE = CellDiameter(mesh)
-
+    # need to add boundary terms if BCs are present
     a = (inner(grad(p), grad(q))*dx + inner(p, q)*dx
          - inner(avg(grad(p)), jump(q, n))*dS
          - inner(avg(grad(q)), jump(p, n))*dS
@@ -78,10 +78,10 @@ p_str = 'sin(pi*x)*sin(pi*y)'
 kappa_str = 'exp(-x*y)'
 
 # polynomial degree
-l=0
+k=0
 set_log_level(40)
 
-nkmax = 6; k = 0
+nkmax = 6; 
 
 hh = []; hht = []; nn = [];
 eu = []; ru = [];
@@ -102,8 +102,8 @@ for nk in range(nkmax):
     mesh = UnitSquareMesh(nps,nps)
     mesht = UnitSquareMesh(npst,npst)
 
-    facet_mesh = MeshFunction('size_t', mesh, 1, 0)
-    facet_mesht = MeshFunction('size_t', mesht, 1, 0)
+    facet_mesh = MeshFunction('size_t', mesh, ndim-1, 0)
+    facet_mesht = MeshFunction('size_t', mesht, ndim-1, 0)
 
     subdomains = {1: CompiledSubDomain('near(x[0], 0)'),
                   2: CompiledSubDomain('near(x[0], 1)'),
@@ -113,8 +113,8 @@ for nk in range(nkmax):
     [subdomain.mark(facet_mesh, tag) for tag, subdomain in subdomains.items()]
     [subdomain.mark(facet_mesht, tag) for tag, subdomain in subdomains.items()]
 
-    Gamma = (1,2) # on which we will define the Lagrange multiplier 
-    Sigma = (3,4)
+    Gamma = (1,3) # left-bottom: on which we will define the Lagrange multiplier 
+    Sigma = (2,4)
 
     # creating sub-boundary mesh only in the needed part
     bmesht = EmbeddedMesh(facet_mesht, Gamma)
@@ -140,8 +140,9 @@ for nk in range(nkmax):
     Hphi    = FunctionSpace(bmesht, 'CG', k+1) # we do need continuity in 2D, right?
     Hsig_aux= FunctionSpace(mesh, "RT", k+1)
     Hu      = VectorFunctionSpace(mesh, "DG", k)
-    Hgam    = VectorFunctionSpace(mesh, "CG", k+1) 
+    Hgam    = FunctionSpace(mesh, "CG", k+1) 
 
+    #need to add essential BCs for sigma!
     
     Hh = [Heta,Hxi_aux,Hxi_aux,Bub,Hp,Hphi,Hsig_aux,Hsig_aux,Bub,Hu,Hgam]
 
@@ -204,17 +205,18 @@ for nk in range(nkmax):
 
 
     gN = project(dot(eta_ex,n_),Hphi) # not sure if this will work? check older code
-    
+    # try project(dot(kappa*grad(phi_ex_),n_),Hphi)
+
     # ******* variational forms ******* #
     ''' this has to be entered row-wise chi, rho0, rho1, btesta, q, psi, tau0, tau1, btestb, v, del'''
 
     FF = [kappa^(-1)*dot(eta,chi)*dx + p*div(chi)*dx - Tn_chi*phi*dx_(Gamma), 
             inner(sig0+sig1+curlBub(btrial_b),rho0)*dx \
-            + inner(CinvTimes(xi0+xi1+curlBub(btrial_a)),rho0)*dx - alpha*p*tr(rho0)*dx,
+            + inner(CTimes(xi0+xi1+curlBub(btrial_a)),rho0)*dx - alpha*p*tr(rho0)*dx,
             inner(sig0+sig1+curlBub(btrial_b),rho1)*dx \
-            + inner(CinvTimes(xi0+xi1+curlBub(btrial_a)),rho1)*dx - alpha*p*tr(rho1)*dx,
+            + inner(CTimes(xi0+xi1+curlBub(btrial_a)),rho1)*dx - alpha*p*tr(rho1)*dx,
             inner(sig0+sig1+curlBub(btrial_b),curlBub(btest_a))*dx \
-            + inner(CinvTimes(xi0+xi1+curlBub(btrial_a)),curlBub(btest_a))*dx - alpha*p*tr(curlBub(btest_a))*dx,
+            + inner(CTimes(xi0+xi1+curlBub(btrial_a)),curlBub(btest_a))*dx - alpha*p*tr(curlBub(btest_a))*dx,
             - alpha*tr(xi0+xi1+curlBub(btrial_a))*q*dx + dot(div(eta),q)*dx - c0*p*q*dx + g_ex*q*dx,
             Tn_eta*psi*dx_(Gamma)- gN*psi*dx_(Gamma),    
             - inner(xi0+xi1+curlBub(btrial_a),tau0)*dx - dot(u,div(tau0))*dx - inner(gamma,tau0)*dx + dot(tau0*n,u_D)*ds(Gamma), 
