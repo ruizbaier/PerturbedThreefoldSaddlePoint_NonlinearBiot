@@ -306,10 +306,7 @@ for nk in range(nkmax):
     print("mass loss = ", mass)
 
     # ******* saving solutions to file ******* #
-    # Ensure output directory exists
-    #os.makedirs('outputs', exist_ok=True)
-
-    # Rename functions (names used inside XDMF) and write all fields into a single XDMF
+    # we need two files since we have two different meshes
     u.rename("u", "u")
     p.rename("p", "u")
     gamh.rename("gam", "gam")
