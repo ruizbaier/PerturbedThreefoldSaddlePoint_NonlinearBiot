@@ -6,16 +6,19 @@ This repository contains a FEniCS_{ii} implementation of a fully-mixed poroelast
 
 Find $(\boldsymbol{\eta},\boldsymbol{\xi}) \in \mathbf{H}(\mathrm{div};\Omega)\times \mathbb{L}^2(\Omega)$, $p\in L^2(\Omega)$, $(\varphi,\boldsymbol{\sigma}) \in H_{00}^{1/2}(\Gamma)\times \mathbb{H}_\Sigma(\mathbf{div};\Omega)$, and $(\boldsymbol{u},\boldsymbol{\gamma}) \in \mathbf{L}^2(\Omega)\times \mathbb{L}^2_{\mathrm{skew}}(\Omega)$ such that
 $$
-\begin{aligned}
-\int_{\Omega}\kappa^{-1} \,\boldsymbol{\eta}\cdot\boldsymbol{\chi} + \int_{\Omega} p\,\mathrm{div}(\boldsymbol{\chi}) - \langle{\boldsymbol{\chi}\cdot\boldsymbol{n}},{\varphi}\rangle_{\Gamma} &= \langle{\boldsymbol{\chi}\cdot\boldsymbol{n}},p_\sigma \rangle_{\Sigma},\\
-\int_{\Omega}\boldsymbol{\sigma}:\boldsymbol{\rho} - \int_{\Omega}\mathcal{C}\,\boldsymbol{\xi}:\boldsymbol{\rho} + \alpha\int_{\Omega}p\,\mathrm{tr}(\boldsymbol{\rho}) &= 0 \\
- - \alpha \int_{\Omega}\mathrm{tr}(\boldsymbol{\xi})\, q + \int_{\Omega}\mathrm{div}(\boldsymbol{\eta})\, q - c_{0}\int_{\Omega}p\, q &= - \int_{\Omega}g\,q \\
- -\int_{\Omega}\boldsymbol{\xi}:\boldsymbol{\tau} - \int_{\Omega}\boldsymbol{u}\cdot\mathbf{div}(\boldsymbol{\tau}) - \int_{\Omega}\boldsymbol{\gamma}:\boldsymbol{\tau} & = - \langle{\boldsymbol{\tau}\boldsymbol{n}},{\boldsymbol{u}_{\mathrm{D}}}\rangle_{\Gamma},\\
- \langle{\boldsymbol{\eta}\cdot\boldsymbol{n}},{\psi}\rangle_{\Gamma} &=  \langle{g_{\mathrm{N}}},{\psi}\rangle_{\Gamma}, \\
- -\int_{\Omega}\mathbf{div}(\boldsymbol{\sigma}) \cdot \boldsymbol{v}  &= \int_{\Omega}\boldsymbol{f}\cdot \boldsymbol{v},\\
- - \int_\Omega \boldsymbol{\sigma}:\boldsymbol{\delta} & = 0, 
-\end{aligned}
-$$
+\int_{\Omega}\kappa^{-1} \,\boldsymbol{\eta}\cdot\boldsymbol{\chi} + \int_{\Omega} p\,\mathrm{div}(\boldsymbol{\chi}) - \langle{\boldsymbol{\chi}\cdot\boldsymbol{n}},{\varphi}\rangle_{\Gamma} = \langle{\boldsymbol{\chi}\cdot\boldsymbol{n}},p_\sigma \rangle_{\Sigma},$$
+
+$$\int_{\Omega}\boldsymbol{\sigma}:\boldsymbol{\rho} - \int_{\Omega}\mathcal{C}\,\boldsymbol{\xi}:\boldsymbol{\rho} + \alpha\int_{\Omega}p\,\mathrm{tr}(\boldsymbol{\rho}) = 0, $$
+
+$$ - \alpha \int_{\Omega}\mathrm{tr}(\boldsymbol{\xi})\, q + \int_{\Omega}\mathrm{div}(\boldsymbol{\eta})\, q - c_{0}\int_{\Omega}p\, q = - \int_{\Omega}g\,q,$$
+
+$$ -\int_{\Omega}\boldsymbol{\xi}:\boldsymbol{\tau} - \int_{\Omega}\boldsymbol{u}\cdot\mathbf{div}(\boldsymbol{\tau}) - \int_{\Omega}\boldsymbol{\gamma}:\boldsymbol{\tau}  = - \langle{\boldsymbol{\tau}\boldsymbol{n}},{\boldsymbol{u}_{\mathrm{D}}}\rangle_{\Gamma},$$
+
+$$\langle{\boldsymbol{\eta}\cdot\boldsymbol{n}},{\psi}\rangle_{\Gamma} =  \langle{g_{\mathrm{N}}},{\psi}\rangle_{\Gamma},$$
+
+$$-\int_{\Omega}\mathbf{div}(\boldsymbol{\sigma}) \cdot \boldsymbol{v}  = \int_{\Omega}\boldsymbol{f}\cdot \boldsymbol{v},$$
+
+$$ - \int_{\Omega} \boldsymbol{\sigma}:\boldsymbol{\delta} = 0,$$
 
 for all $(\boldsymbol{\chi},\boldsymbol{\rho}) \in \mathbf{H}(\mathrm{div};\Omega) \times \mathbb{L}^2(\Omega)$, $q\in L^2(\Omega)$, $(\psi,\boldsymbol{\tau}) \in H_{00}^{1/2}(\Gamma)\times \mathbb{H}_{\Sigma}(\mathbf{div};\Omega)$, and  $(\boldsymbol{v},\boldsymbol{\delta}) \in \mathbf{L}^{2}(\Omega) \times \mathbf{L}^{2}_{\mathrm{skew}}(\Omega)$.
 
