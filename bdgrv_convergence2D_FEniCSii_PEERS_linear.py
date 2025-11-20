@@ -1,4 +1,5 @@
 from dolfin import *
+import os
 from xii import *
 import sympy2fenics as sf
 from scipy.linalg import eigh
@@ -7,6 +8,15 @@ import numpy as np
 parameters["form_compiler"]["representation"] = "uflacs"
 parameters["form_compiler"]["cpp_optimize"] = True
 parameters["form_compiler"]["quadrature_degree"] = 4
+
+fileO = XDMFFile("outputs/out-2D-convergence-bulk.xdmf")
+fileO.parameters["functions_share_mesh"] = True
+fileO.parameters['rewrite_function_mesh'] = True
+fileO.parameters["flush_output"] = True
+
+fileOM = XDMFFile("outputs/out-2D-convergence-phi.xdmf")
+fileOM.parameters["rewrite_function_mesh"] = True
+fileOM.parameters["flush_output"] = True
 
 def fractional_positive_norm_00(f, fh, s):
     '''||f-fh||_s in H^s norm. We use a CG space with Dirichlet BCs to reflect H^s_{00}'''
@@ -281,7 +291,7 @@ for nk in range(nkmax):
     sig = as_tensor((sig0,sig1)) + curlBub(btrial_b)
     gamma = tensorify_skew(gam_)
 
-    Th = TensorFunctionSpace(mesh,'CG', 1)
+    Th = TensorFunctionSpace(mesh,'DG', k)
     sigh = project(sig,Th)
     gamh = project(gamma,Th)
     xih = project(xi,Th)
@@ -296,21 +306,28 @@ for nk in range(nkmax):
     print("mass loss = ", mass)
 
     # ******* saving solutions to file ******* #
-    eta.rename("eta", "")
-    u.rename("u", "")
-    p.rename("p", "")
-    gamh.rename("gam", "")
-    sigh.rename("sig", "")
-    phi.rename("phi", "")
-    xih.rename("xi", "")
+    # Ensure output directory exists
+    #os.makedirs('outputs', exist_ok=True)
 
-    File('outputs/out-ex01-fenicsiibabuska_u.pvd') << u
-    File('outputs/out-ex01-fenicsiibabuska_phi.pvd') << phi
-    File('outputs/out-ex01-fenicsiibabuska_xi.pvd') << xih
-    File('outputs/out-ex01-fenicsiibabuska_sig.pvd') << sigh
-    File('outputs/out-ex01-fenicsiibabuska_gam.pvd') << gamh
-    File('outputs/out-ex01-fenicsiibabuska_eta.pvd') << eta
-    File('outputs/out-ex01-fenicsiibabuska_p.pvd') << p
+    # Rename functions (names used inside XDMF) and write all fields into a single XDMF
+    u.rename("u", "u")
+    p.rename("p", "u")
+    gamh.rename("gam", "gam")
+    sigh.rename("sig", "sig")
+    phi.rename("phi", "phi")
+    xih.rename("xi", "xi")
+    sigh.rename("sig", "sig")
+    gamh.rename("gam", "gam")
+    eta.rename("eta", "eta")
+    p.rename("p", "p")
+
+    fileO.write(u, nk*1.0)
+    fileOM.write(phi, nk*1.0)
+    fileO.write(xih, nk*1.0)
+    fileO.write(sigh, nk*1.0)
+    fileO.write(gamh, nk*1.0)
+    fileO.write(eta, nk*1.0)
+    fileO.write(p, nk*1.0)
 
     # ********* Computing errors ****** #
 
