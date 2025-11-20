@@ -21,7 +21,7 @@ $$-\int_{\Omega}\mathbf{div}(\boldsymbol{\sigma}) \cdot \boldsymbol{v}  = \int_{
 
 $$ - \int_{\Omega} \boldsymbol{\sigma}:\boldsymbol{\delta} = 0,$$
 
-for all $(\boldsymbol{\chi},\boldsymbol{\rho}) \in \mathbf{H}(\mathrm{div};\Omega) \times 𝕃^2(\Omega)$, $q\in L^2(\Omega)$, $(\psi,\boldsymbol{\tau}) \in H_{00}^{1/2}(\Gamma)\times ℍ_{\Sigma}(\mathbf{div};\Omega)$, and  $(\boldsymbol{v},\boldsymbol{\delta}) \in \mathbf{L}^{2}(\Omega) \times \mathbf{L}^{2}_{\mathrm{skew}}(\Omega)$.
+for all $(\boldsymbol{\chi},\boldsymbol{\rho}) \in \mathbf{H}(\mathrm{div};\Omega) \times 𝕃^2(\Omega)$, $q\in L^2(\Omega)$, $(\psi,\boldsymbol{\tau}) \in H_{00}^{1/2}(\Gamma)\times ℍ_{\Sigma}(\mathbf{div};\Omega)$, and  $(\boldsymbol{v},\boldsymbol{\delta}) \in \mathbf{L}^{2}(\Omega) \times 𝕃^{2}_{\mathrm{skew}}(\Omega)$.
 
 **What this repository provides**
 - **`bdgrv_convergence2D_FEniCSii_PEERS_linear.py`**: driver for convergence tests and example runs. 
