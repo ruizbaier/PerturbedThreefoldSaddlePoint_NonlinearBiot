@@ -33,22 +33,7 @@ for all $(\boldsymbol{\chi},\boldsymbol{\rho}) \in \mathbf{H}(\mathrm{div};\Omeg
 - **FEniCS_{ii} (xii)**: used to build block variational forms and to obtain block matrices/vectors. The code contains logic to detect when the assembled system is monolithic vs block-structured and adapts how boundary conditions are applied.
 - **Fractional norm implementation**: see `fractional_positive_norm_00(f, fh, s)` in the linear driver. It builds stiffness `A` and mass `M` matrices on a CG trial/test space, eliminates Dirichlet DOFs and solves the generalized eigenproblem `A u = lambda M u`. The fractional inner product matrix is then assembled via spectral representation and applied to the reduced error vector.
 
-**Quick start (example)**
-Assuming you have a FEniCS environment where `xii` (FEniCS_{ii}) is installed and active (`fenicsproject` conda env in the original testing), run the linear driver with:
-
-```bash
-# activate your fenics environment (example)
-conda activate fenicsproject
-
-python bdgrv_convergence2D_FEniCSii_PEERS_linear.py
-```
-
-Notes:
-- If your installation lacks command-line tools like `pdftotext` the README will still display equations in LaTeX; renderers such as GitHub or VS Code will show them properly when viewing the file with math support.
-- If `apply_bc` raises template/allocation errors when converting between monolithic and block systems, prefer using `block_assemble` so the block templates are preserved and pass per-block BC dictionaries directly.
-
 **Files of interest**
-- `bdgrv_convergence2D_FEniCSii_PEERS.py` — full (nonlinear-capable) driver with nonlinear jacobian helpers and richer diagnostics.
 - `bdgrv_convergence2D_FEniCSii_PEERS_linear.py` — linear test driver (computes fractional-norm error for the trace variable using `fractional_positive_norm_00`).
 - `sympy2fenics.py` — small helper to convert symbolic strings to FEniCS `Expression` objects used in the examples.
 
@@ -84,3 +69,13 @@ pip install xii
 
 # Optional: if xii is not published on PyPI, install from source (follow the xii project README)
 # git clone <xii-repo-url> && cd xii && pip install -e .
+
+**Quick start (example)**
+Assuming you have a FEniCS environment where `xii` (FEniCS_{ii}) is installed and active (`fenicsproject` conda env in the original testing), run the linear driver with:
+
+```bash
+# activate your fenics environment (example)
+conda activate fenicsproject
+
+python bdgrv_convergence2D_FEniCSii_PEERS_linear.py
+```
