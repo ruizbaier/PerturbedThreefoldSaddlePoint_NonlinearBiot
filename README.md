@@ -7,11 +7,11 @@ This repository contains a FEniCS_{ii} implementation of a fully-mixed poroelast
 Find $(\boldsymbol{\eta},\boldsymbol{\xi}) \in \mathbf{H}(\mathrm{div};\Omega)\times 𝕃^2(\Omega)$, $p\in L^2(\Omega)$, $(\varphi,\boldsymbol{\sigma}) \in H_{00}^{1/2}(\Gamma)\times ℍ_\Sigma(\mathbf{div};\Omega)$, and $(\boldsymbol{u},\boldsymbol{\gamma}) \in \mathbf{L}^2(\Omega)\times 𝕃^2_{\mathrm{skew}}(\Omega)$ such that
 
 $$
-\int_{\Omega}\kappa^{-1} \,\boldsymbol{\eta}\cdot\boldsymbol{\chi} + \int_{\Omega} p\,\mathrm{div}(\boldsymbol{\chi}) - \langle{\boldsymbol{\chi}\cdot\boldsymbol{n}},{\varphi}\rangle_{\Gamma} = \langle{\boldsymbol{\chi}\cdot\boldsymbol{n}},p_{\Sigma} \rangle_{\Sigma},$$
+\int_{\Omega}\kappa^{-1} \boldsymbol{\eta}\cdot\boldsymbol{\chi} + \int_{\Omega} p \mathrm{div}(\boldsymbol{\chi}) - \langle{\boldsymbol{\chi}\cdot\boldsymbol{n}},{\varphi}\rangle_{\Gamma} = \langle{\boldsymbol{\chi}\cdot\boldsymbol{n}},p_{\Sigma} \rangle_{\Sigma},$$
 
-$$\int_{\Omega}\boldsymbol{\sigma}:\boldsymbol{\rho} - \int_{\Omega}\mathcal{C}\,\boldsymbol{\xi}:\boldsymbol{\rho} + \alpha\int_{\Omega}p\,\mathrm{tr}(\boldsymbol{\rho}) = 0, $$
+$$\int_{\Omega}\boldsymbol{\sigma}:\boldsymbol{\rho} - \int_{\Omega}\mathcal{C}\boldsymbol{\xi}:\boldsymbol{\rho} + \alpha\int_{\Omega}p\mathrm{tr}(\boldsymbol{\rho}) = 0, $$
 
-$$ - \alpha \int_{\Omega}\mathrm{tr}(\boldsymbol{\xi})\, q + \int_{\Omega}\mathrm{div}(\boldsymbol{\eta})\, q - c_{0}\int_{\Omega}p\, q = - \int_{\Omega}g\,q,$$
+$$ - \alpha \int_{\Omega}\mathrm{tr}(\boldsymbol{\xi}) q + \int_{\Omega}\mathrm{div}(\boldsymbol{\eta}) q - c_{0}\int_{\Omega}p q = - \int_{\Omega}gq,$$
 
 $$ -\int_{\Omega}\boldsymbol{\xi}:\boldsymbol{\tau} - \int_{\Omega}\boldsymbol{u}\cdot\mathbf{div}(\boldsymbol{\tau}) - \int_{\Omega}\boldsymbol{\gamma}:\boldsymbol{\tau}  = - \langle{\boldsymbol{\tau}\boldsymbol{n}},{\boldsymbol{u}_{\mathrm{D}}}\rangle_{\Gamma},$$
 
