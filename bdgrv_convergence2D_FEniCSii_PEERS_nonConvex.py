@@ -29,7 +29,7 @@ def fractional_positive_norm_00(f, fh, s):
     
     # Fractional Laplacian 
     p, q = TrialFunction(Qe), TestFunction(Qe)
-    a = inner(grad(p), grad(q))*dx
+    a = inner(grad(p), grad(q))*dx + p*q*dx
     m = inner(p, q)*dx
 
     A, M = [assemble(foo).array() for foo in (a, m)]
@@ -96,7 +96,7 @@ CTimes = lambda s: 2.*mu*s + lmbda*tr(s)*I
 
 # ******* Exact solutions for error analysis ****** #
 u_str = '(0.05*cos(1.5*pi*(x+y)),0.05*sin(1.5*pi*(x-y)))'
-p_str = 'sin(pi*x)*sin(pi*y)'
+p_str = '(y-2*x)**2*y*sin(pi*x*y)'#had to construct a p exact that vanishes on Gamma... not sure why?
 kappa_str = 'exp(-x*y)'
 
 # polynomial degree
@@ -164,14 +164,8 @@ for nk in range(nkmax):
 
     gamma = tensorify_skew(gam_); delta = tensorify_skew(del_)
 
-    # ****** Tensorification of sig, tau, xi, rho ******* #
-    '''
-    maybe to try simply doing
-    sig = as_tensor((sig0,sig1)) + curlB(btrial)
-    tau = as_tensor((tau0,tau1)) + curlB(btest)
-    ? 
-    it seems not to work because it mixes the blocks of the system matrix. OK for after solving
-    '''
+    # ****** Tensorification of sig, tau ******* #
+ 
     sig0, sig1 = outer(e0, sig0), outer(e1, sig1)
     tau0, tau1 = outer(e0, tau0), outer(e1, tau1)
     
@@ -216,26 +210,26 @@ for nk in range(nkmax):
     a[0][3] = p*div(chi)*dx
     a[0][4] = - dot(T_chi,n_)*phi*dx_(Gamma)
 
-    a[1][1] = -inner(CTimes(xi_),rho_)*dx
-    a[1][2] = -inner(CTimes(curlBub(btrial_a)),rho_)*dx
-    a[1][3] = alpha*p*tr(rho_)*dx
-    a[1][5] = inner(sig0,rho_)*dx
-    a[1][6] = inner(sig1,rho_)*dx
-    a[1][7] = inner(curlBub(btrial_b),rho_)*dx
+    a[1][1] = inner(CTimes(xi_),rho_)*dx
+    a[1][2] = inner(CTimes(curlBub(btrial_a)),rho_)*dx
+    a[1][3] = -alpha*p*tr(rho_)*dx
+    a[1][5] = -inner(sig0,rho_)*dx
+    a[1][6] = -inner(sig1,rho_)*dx
+    a[1][7] = -inner(curlBub(btrial_b),rho_)*dx
 
-    a[2][1] = -inner(CTimes(xi_),curlBub(btest_a))*dx
-    a[2][2] = -inner(CTimes(curlBub(btrial_a)),curlBub(btest_a))*dx
-    a[2][3] = alpha*p*tr(curlBub(btest_a))*dx
-    a[2][5] = inner(sig0,curlBub(btest_a))*dx
-    a[2][6] = inner(sig1,curlBub(btest_a))*dx
-    a[2][7] = inner(curlBub(btrial_b),curlBub(btest_a))*dx
+    a[2][1] = inner(CTimes(xi_),curlBub(btest_a))*dx
+    a[2][2] = inner(CTimes(curlBub(btrial_a)),curlBub(btest_a))*dx
+    a[2][3] = -alpha*p*tr(curlBub(btest_a))*dx
+    a[2][5] = -inner(sig0,curlBub(btest_a))*dx
+    a[2][6] = -inner(sig1,curlBub(btest_a))*dx
+    a[2][7] = -inner(curlBub(btrial_b),curlBub(btest_a))*dx
 
     a[3][0] = dot(div(eta),q)*dx
     a[3][1] = - alpha*tr(xi_)*q*dx
     a[3][2] = - alpha*tr(curlBub(btrial_a))*q*dx
     a[3][3] = - c0*p*q*dx
 
-    a[4][0] = dot(T_eta,n_)*psi*dx_(Gamma)
+    a[4][0] = - dot(T_eta,n_)*psi*dx_(Gamma)
 
     a[5][1] = - inner(xi_,tau0)*dx
     a[5][2] = - inner(curlBub(btrial_a),tau0)*dx
@@ -262,7 +256,7 @@ for nk in range(nkmax):
 
     l[0]    = dot(chi,n)*p_D*ds(Sigma)
     l[3]    = - g_ex*q*dx
-    l[4]    = dot(gNvec,n_)*psi*dx_(Gamma)
+    l[4]    = - dot(gNvec,n_)*psi*dx_(Gamma)
     l[5]    = - dot(tau0*n,u_D)*ds(Gamma)
     l[6]    = - dot(tau1*n,u_D)*ds(Gamma)
     l[7]    = - dot(curlBub(btest_b)*n,u_D)*ds(Gamma)
