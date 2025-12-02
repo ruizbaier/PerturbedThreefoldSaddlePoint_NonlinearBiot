@@ -26,8 +26,8 @@ def fractional_positive_norm_00(f, fh, s):
 
     Qe = FunctionSpace(mesh, Qelm)
     bc = DirichletBC(Qe, Constant(0.0), 'on_boundary')
-    
-    # Fractional Laplacian 
+
+    # Fractional Laplacian
     p, q = TrialFunction(Qe), TestFunction(Qe)
     a = inner(grad(p), grad(q))*dx + p*q*dx
     m = inner(p, q)*dx
@@ -57,7 +57,7 @@ def fractional_positive_norm_00(f, fh, s):
         error = error[mask]
 
     norm = np.inner(error, Hs@error)
-    return np.sqrt(norm)    
+    return np.sqrt(norm)
 # end fractional_positive_norm_00
 
 def block_bcs_to_monolithic_map(BCs_dict, Hh):
@@ -97,11 +97,14 @@ CTimes = lambda s: 2.*mu*s + lmbda*tr(s)*I
 # ******* Exact solutions for error analysis ****** #
 u_str = '(0.05*cos(1.5*pi*(x+y)),0.05*sin(1.5*pi*(x-y)))'
 p_str = '(y-2*x)**2*y*sin(pi*x*y)'#had to construct a p exact that vanishes on Gamma... not sure why?
-kappa_str = 'exp(-x*y)'
+kappa_str = 'exp(x*y)'
 
 # polynomial degree
 k=0; nkmax = 4
 set_log_level(40)
+
+# Penalty parameter
+eps = 1e-12
 
 hh = []; hht = []; nn = []; eu = []; ru = []
 esig = []; rsig = []; ep = []; rp = []
@@ -146,7 +149,7 @@ for nk in range(nkmax):
     Hxi_aux = TensorFunctionSpace(mesh, "DG", k)
     Bub     = VectorFunctionSpace(mesh,'B', k + 3)
     Hp      = FunctionSpace(mesh, "DG", k)
-    Hphi    = FunctionSpace(bmesht, 'CG', k+1) 
+    Hphi    = FunctionSpace(bmesht, 'CG', k+1)
     Hsig_aux= FunctionSpace(mesh, "RT", k+1)
     Hu      = VectorFunctionSpace(mesh, "DG", k)
     Hgam    = FunctionSpace(mesh, "CG", k+1) 
@@ -204,9 +207,9 @@ for nk in range(nkmax):
     BCs_use = block_bcs_to_monolithic_map(BCs_dict, Hh)
 
     # ******* variational forms ******* eta,  xi_, btrial_a, p, phi, sig0, sig1, btrial_b, u, gamma
-    ''' this has to be entered row-wise chi, rho_, btesta, q, psi, tau0, tau1, btestb, v, delta'''
+    ''' this has to be entered row-wise chi, rho_, btest_a, q, psi, tau0, tau1, btest_b, v, delta'''
     a = block_form(Hh,2); l = block_form(Hh,1)
-    a[0][0] = 1.0/kappa*dot(eta,chi)*dx
+    a[0][0] = 1/kappa*dot(eta,chi)*dx
     a[0][3] = p*div(chi)*dx
     a[0][4] = - dot(T_chi,n_)*phi*dx_(Gamma)
 
@@ -230,6 +233,7 @@ for nk in range(nkmax):
     a[3][3] = - c0*p*q*dx
 
     a[4][0] = - dot(T_eta,n_)*psi*dx_(Gamma)
+    a[4][4] = eps*phi*psi*dx_(Gamma)
 
     a[5][1] = - inner(xi_,tau0)*dx
     a[5][2] = - inner(curlBub(btrial_a),tau0)*dx
@@ -237,18 +241,16 @@ for nk in range(nkmax):
     a[5][9] = - inner(gamma,tau0)*dx   
 
     a[6][1] = - inner(xi_,tau1)*dx
-    a[6][2] = - inner(curlBub(btrial_a),tau1)*dx        
+    a[6][2] = - inner(curlBub(btrial_a),tau1)*dx
     a[6][8] = - dot(u,div(tau1))*dx
     a[6][9] = - inner(gamma,tau1)*dx
 
     a[7][1] = - inner(xi_,curlBub(btest_b))*dx
     a[7][2] = - inner(curlBub(btrial_a),curlBub(btest_b))*dx
-    a[7][8] = - dot(u,div(curlBub(btest_b)))*dx
     a[7][9] = - inner(gamma,curlBub(btest_b))*dx
 
     a[8][5] = - dot(div(sig0),v)*dx
     a[8][6] = - dot(div(sig1),v)*dx
-    a[8][7] = - dot(div(curlBub(btrial_b)),v)*dx
 
     a[9][5] = - inner(sig0,delta)*dx
     a[9][6] = - inner(sig1,delta)*dx
