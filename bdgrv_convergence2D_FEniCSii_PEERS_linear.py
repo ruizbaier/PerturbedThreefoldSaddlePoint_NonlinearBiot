@@ -7,7 +7,7 @@ import numpy as np
 
 parameters["form_compiler"]["representation"] = "uflacs"
 parameters["form_compiler"]["cpp_optimize"] = True
-parameters["form_compiler"]["quadrature_degree"] = 4
+parameters["form_compiler"]["quadrature_degree"] = -1
 
 fileO = XDMFFile("outputs/out-2D-convergence-bulk.xdmf")
 fileO.parameters["functions_share_mesh"] = True
@@ -48,7 +48,7 @@ def fractional_positive_norm_00(f, fh, s):
 
     W = M@U
     # Fractional inner product is induced by
-    Hs = W@np.diag(Lmbda**s)@W.T
+    Hs = W@np.diag(Lmbda**(-s))@W.T
     # Compute coefficient of the error vector and restrict to free dofs
     error = interpolate(fh, Qe).vector()
     error.axpy(-1, project(f, Qe).vector())
@@ -57,8 +57,7 @@ def fractional_positive_norm_00(f, fh, s):
         error = error[mask]
 
     norm = np.inner(error, Hs@error)
-    return np.sqrt(norm)    
-# end fractional_positive_norm_00
+    return np.sqrt(norm)
 
 def block_bcs_to_monolithic_map(BCs_dict, Hh):
     offsets = [0]
@@ -97,10 +96,10 @@ CTimes = lambda s: 2.*mu*s + lmbda*tr(s)*I
 # ******* Exact solutions for error analysis ****** #
 u_str = '(0.05*cos(1.5*pi*(x+y)),0.05*sin(1.5*pi*(x-y)))'
 p_str = 'sin(pi*x)*sin(pi*y)'
-kappa_str = 'exp(-x*y)'
+kappa_str = 'exp(x*y)'
 
 # polynomial degree
-k=0; nkmax = 6
+k=1; nkmax = 6
 set_log_level(40)
 
 hh = []; hht = []; nn = []; eu = []; ru = []
@@ -257,12 +256,10 @@ for nk in range(nkmax):
 
     a[7][1] = - inner(xi_,curlBub(btest_b))*dx
     a[7][2] = - inner(curlBub(btrial_a),curlBub(btest_b))*dx
-    a[7][8] = - dot(u,div(curlBub(btest_b)))*dx
     a[7][9] = - inner(gamma,curlBub(btest_b))*dx
 
     a[8][5] = - dot(div(sig0),v)*dx
     a[8][6] = - dot(div(sig1),v)*dx
-    a[8][7] = - dot(div(curlBub(btrial_b)),v)*dx
 
     a[9][5] = - inner(sig0,delta)*dx
     a[9][6] = - inner(sig1,delta)*dx
@@ -282,9 +279,10 @@ for nk in range(nkmax):
 
     # ******* solving linear system ******* #
     solver = PETScLUSolver(method = "mumps")
+
     Sol   = ii_Function(Hh)
     solver.solve(A_, Sol.vector(), b_)
-
+    
     # ******* extracting solutions ******* #
     eta,  xi_, btrial_a, p, phi, sig0, sig1, btrial_b, u, gam_ = Sol
     xi = xi_ + curlBub(btrial_a)

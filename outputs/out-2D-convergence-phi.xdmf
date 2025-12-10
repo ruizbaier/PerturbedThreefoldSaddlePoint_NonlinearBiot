@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" []>
+<Xdmf Version="3.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <Domain>
+    <Grid Name="TimeSeries_phi" GridType="Collection" CollectionType="Temporal">
+      <Grid Name="mesh" GridType="Uniform">
+        <Topology NumberOfElements="4" TopologyType="PolyLine" NodesPerElement="2">
+          <DataItem Dimensions="4 2" NumberType="UInt" Format="HDF">out-2D-convergence-phi.h5:/Mesh/0/mesh/topology</DataItem>
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="5 2" Format="HDF">out-2D-convergence-phi.h5:/Mesh/0/mesh/geometry</DataItem>
+        </Geometry>
+        <Time Value="0" />
+        <Attribute Name="phi" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="5 1" Format="HDF">out-2D-convergence-phi.h5:/VisualisationVector/0</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="mesh" GridType="Uniform">
+        <Topology NumberOfElements="6" TopologyType="PolyLine" NodesPerElement="2">
+          <DataItem Dimensions="6 2" NumberType="UInt" Format="HDF">out-2D-convergence-phi.h5:/Mesh/1/mesh/topology</DataItem>
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="7 2" Format="HDF">out-2D-convergence-phi.h5:/Mesh/1/mesh/geometry</DataItem>
+        </Geometry>
+        <Time Value="1" />
+        <Attribute Name="phi" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="7 1" Format="HDF">out-2D-convergence-phi.h5:/VisualisationVector/1</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="mesh" GridType="Uniform">
+        <Topology NumberOfElements="10" TopologyType="PolyLine" NodesPerElement="2">
+          <DataItem Dimensions="10 2" NumberType="UInt" Format="HDF">out-2D-convergence-phi.h5:/Mesh/2/mesh/topology</DataItem>
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="11 2" Format="HDF">out-2D-convergence-phi.h5:/Mesh/2/mesh/geometry</DataItem>
+        </Geometry>
+        <Time Value="2" />
+        <Attribute Name="phi" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="11 1" Format="HDF">out-2D-convergence-phi.h5:/VisualisationVector/2</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="mesh" GridType="Uniform">
+        <Topology NumberOfElements="18" TopologyType="PolyLine" NodesPerElement="2">
+          <DataItem Dimensions="18 2" NumberType="UInt" Format="HDF">out-2D-convergence-phi.h5:/Mesh/3/mesh/topology</DataItem>
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="19 2" Format="HDF">out-2D-convergence-phi.h5:/Mesh/3/mesh/geometry</DataItem>
+        </Geometry>
+        <Time Value="3" />
+        <Attribute Name="phi" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="19 1" Format="HDF">out-2D-convergence-phi.h5:/VisualisationVector/3</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="mesh" GridType="Uniform">
+        <Topology NumberOfElements="34" TopologyType="PolyLine" NodesPerElement="2">
+          <DataItem Dimensions="34 2" NumberType="UInt" Format="HDF">out-2D-convergence-phi.h5:/Mesh/4/mesh/topology</DataItem>
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="35 2" Format="HDF">out-2D-convergence-phi.h5:/Mesh/4/mesh/geometry</DataItem>
+        </Geometry>
+        <Time Value="4" />
+        <Attribute Name="phi" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="35 1" Format="HDF">out-2D-convergence-phi.h5:/VisualisationVector/4</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="mesh" GridType="Uniform">
+        <Topology NumberOfElements="66" TopologyType="PolyLine" NodesPerElement="2">
+          <DataItem Dimensions="66 2" NumberType="UInt" Format="HDF">out-2D-convergence-phi.h5:/Mesh/5/mesh/topology</DataItem>
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="67 2" Format="HDF">out-2D-convergence-phi.h5:/Mesh/5/mesh/geometry</DataItem>
+        </Geometry>
+        <Time Value="5" />
+        <Attribute Name="phi" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="67 1" Format="HDF">out-2D-convergence-phi.h5:/VisualisationVector/5</DataItem>
+        </Attribute>
+      </Grid>
+    </Grid>
+  </Domain>
+</Xdmf>

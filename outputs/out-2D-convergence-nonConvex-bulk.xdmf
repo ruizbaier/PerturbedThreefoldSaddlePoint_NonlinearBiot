@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" []>
+<Xdmf Version="3.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <Domain>
+    <Grid Name="TimeSeries" GridType="Collection" CollectionType="Temporal">
+      <Grid Name="mesh" GridType="Uniform">
+        <Topology NumberOfElements="59" TopologyType="Triangle" NodesPerElement="3">
+          <DataItem Dimensions="59 3" NumberType="UInt" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/Mesh/0/mesh/topology</DataItem>
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="43 2" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/Mesh/0/mesh/geometry</DataItem>
+        </Geometry>
+        <Time Value="0" />
+        <Attribute Name="u" AttributeType="Vector" Center="Cell">
+          <DataItem Dimensions="59 3" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/0</DataItem>
+        </Attribute>
+        <Attribute Name="xi" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="59 9" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/1</DataItem>
+        </Attribute>
+        <Attribute Name="sig" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="59 9" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/2</DataItem>
+        </Attribute>
+        <Attribute Name="gam" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="59 9" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/3</DataItem>
+        </Attribute>
+        <Attribute Name="eta" AttributeType="Vector" Center="Node">
+          <DataItem Dimensions="43 3" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/4</DataItem>
+        </Attribute>
+        <Attribute Name="p" AttributeType="Scalar" Center="Cell">
+          <DataItem Dimensions="59 1" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/5</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="mesh" GridType="Uniform">
+        <Topology NumberOfElements="246" TopologyType="Triangle" NodesPerElement="3">
+          <DataItem Dimensions="246 3" NumberType="UInt" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/Mesh/6/mesh/topology</DataItem>
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="149 2" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/Mesh/6/mesh/geometry</DataItem>
+        </Geometry>
+        <Time Value="1" />
+        <Attribute Name="u" AttributeType="Vector" Center="Cell">
+          <DataItem Dimensions="246 3" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/6</DataItem>
+        </Attribute>
+        <Attribute Name="xi" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="246 9" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/7</DataItem>
+        </Attribute>
+        <Attribute Name="sig" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="246 9" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/8</DataItem>
+        </Attribute>
+        <Attribute Name="gam" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="246 9" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/9</DataItem>
+        </Attribute>
+        <Attribute Name="eta" AttributeType="Vector" Center="Node">
+          <DataItem Dimensions="149 3" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/10</DataItem>
+        </Attribute>
+        <Attribute Name="p" AttributeType="Scalar" Center="Cell">
+          <DataItem Dimensions="246 1" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/11</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="mesh" GridType="Uniform">
+        <Topology NumberOfElements="966" TopologyType="Triangle" NodesPerElement="3">
+          <DataItem Dimensions="966 3" NumberType="UInt" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/Mesh/12/mesh/topology</DataItem>
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="534 2" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/Mesh/12/mesh/geometry</DataItem>
+        </Geometry>
+        <Time Value="2" />
+        <Attribute Name="u" AttributeType="Vector" Center="Cell">
+          <DataItem Dimensions="966 3" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/12</DataItem>
+        </Attribute>
+        <Attribute Name="xi" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="966 9" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/13</DataItem>
+        </Attribute>
+        <Attribute Name="sig" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="966 9" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/14</DataItem>
+        </Attribute>
+        <Attribute Name="gam" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="966 9" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/15</DataItem>
+        </Attribute>
+        <Attribute Name="eta" AttributeType="Vector" Center="Node">
+          <DataItem Dimensions="534 3" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/16</DataItem>
+        </Attribute>
+        <Attribute Name="p" AttributeType="Scalar" Center="Cell">
+          <DataItem Dimensions="966 1" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/17</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="mesh" GridType="Uniform">
+        <Topology NumberOfElements="3882" TopologyType="Triangle" NodesPerElement="3">
+          <DataItem Dimensions="3882 3" NumberType="UInt" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/Mesh/18/mesh/topology</DataItem>
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="2042 2" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/Mesh/18/mesh/geometry</DataItem>
+        </Geometry>
+        <Time Value="3" />
+        <Attribute Name="u" AttributeType="Vector" Center="Cell">
+          <DataItem Dimensions="3882 3" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/18</DataItem>
+        </Attribute>
+        <Attribute Name="xi" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="3882 9" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/19</DataItem>
+        </Attribute>
+        <Attribute Name="sig" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="3882 9" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/20</DataItem>
+        </Attribute>
+        <Attribute Name="gam" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="3882 9" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/21</DataItem>
+        </Attribute>
+        <Attribute Name="eta" AttributeType="Vector" Center="Node">
+          <DataItem Dimensions="2042 3" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/22</DataItem>
+        </Attribute>
+        <Attribute Name="p" AttributeType="Scalar" Center="Cell">
+          <DataItem Dimensions="3882 1" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/23</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="mesh" GridType="Uniform">
+        <Topology NumberOfElements="15676" TopologyType="Triangle" NodesPerElement="3">
+          <DataItem Dimensions="15676 3" NumberType="UInt" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/Mesh/24/mesh/topology</DataItem>
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="8039 2" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/Mesh/24/mesh/geometry</DataItem>
+        </Geometry>
+        <Time Value="4" />
+        <Attribute Name="u" AttributeType="Vector" Center="Cell">
+          <DataItem Dimensions="15676 3" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/24</DataItem>
+        </Attribute>
+        <Attribute Name="xi" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="15676 9" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/25</DataItem>
+        </Attribute>
+        <Attribute Name="sig" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="15676 9" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/26</DataItem>
+        </Attribute>
+        <Attribute Name="gam" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="15676 9" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/27</DataItem>
+        </Attribute>
+        <Attribute Name="eta" AttributeType="Vector" Center="Node">
+          <DataItem Dimensions="8039 3" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/28</DataItem>
+        </Attribute>
+        <Attribute Name="p" AttributeType="Scalar" Center="Cell">
+          <DataItem Dimensions="15676 1" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/29</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="mesh" GridType="Uniform">
+        <Topology NumberOfElements="62352" TopologyType="Triangle" NodesPerElement="3">
+          <DataItem Dimensions="62352 3" NumberType="UInt" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/Mesh/30/mesh/topology</DataItem>
+        </Topology>
+        <Geometry GeometryType="XY">
+          <DataItem Dimensions="31577 2" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/Mesh/30/mesh/geometry</DataItem>
+        </Geometry>
+        <Time Value="5" />
+        <Attribute Name="u" AttributeType="Vector" Center="Cell">
+          <DataItem Dimensions="62352 3" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/30</DataItem>
+        </Attribute>
+        <Attribute Name="xi" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="62352 9" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/31</DataItem>
+        </Attribute>
+        <Attribute Name="sig" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="62352 9" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/32</DataItem>
+        </Attribute>
+        <Attribute Name="gam" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="62352 9" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/33</DataItem>
+        </Attribute>
+        <Attribute Name="eta" AttributeType="Vector" Center="Node">
+          <DataItem Dimensions="31577 3" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/34</DataItem>
+        </Attribute>
+        <Attribute Name="p" AttributeType="Scalar" Center="Cell">
+          <DataItem Dimensions="62352 1" Format="HDF">out-2D-convergence-nonConvex-bulk.h5:/VisualisationVector/35</DataItem>
+        </Attribute>
+      </Grid>
+    </Grid>
+  </Domain>
+</Xdmf>
