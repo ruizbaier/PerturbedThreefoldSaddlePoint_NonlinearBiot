@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" []>
+<Xdmf Version="3.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <Domain>
+    <Grid Name="TimeSeries" GridType="Collection" CollectionType="Temporal">
+      <Grid Name="mesh" GridType="Uniform">
+        <Topology NumberOfElements="48" TopologyType="Tetrahedron" NodesPerElement="4">
+          <DataItem Dimensions="48 4" NumberType="UInt" Format="HDF">out-3D-convergence-bulk.h5:/Mesh/0/mesh/topology</DataItem>
+        </Topology>
+        <Geometry GeometryType="XYZ">
+          <DataItem Dimensions="27 3" Format="HDF">out-3D-convergence-bulk.h5:/Mesh/0/mesh/geometry</DataItem>
+        </Geometry>
+        <Time Value="0" />
+        <Attribute Name="u" AttributeType="Vector" Center="Cell">
+          <DataItem Dimensions="48 3" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/0</DataItem>
+        </Attribute>
+        <Attribute Name="xi" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="48 9" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/1</DataItem>
+        </Attribute>
+        <Attribute Name="sig" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="48 9" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/2</DataItem>
+        </Attribute>
+        <Attribute Name="gam" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="48 9" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/3</DataItem>
+        </Attribute>
+        <Attribute Name="eta" AttributeType="Vector" Center="Node">
+          <DataItem Dimensions="27 3" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/4</DataItem>
+        </Attribute>
+        <Attribute Name="p" AttributeType="Scalar" Center="Cell">
+          <DataItem Dimensions="48 1" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/5</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="mesh" GridType="Uniform">
+        <Topology NumberOfElements="384" TopologyType="Tetrahedron" NodesPerElement="4">
+          <DataItem Dimensions="384 4" NumberType="UInt" Format="HDF">out-3D-convergence-bulk.h5:/Mesh/6/mesh/topology</DataItem>
+        </Topology>
+        <Geometry GeometryType="XYZ">
+          <DataItem Dimensions="125 3" Format="HDF">out-3D-convergence-bulk.h5:/Mesh/6/mesh/geometry</DataItem>
+        </Geometry>
+        <Time Value="1" />
+        <Attribute Name="u" AttributeType="Vector" Center="Cell">
+          <DataItem Dimensions="384 3" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/6</DataItem>
+        </Attribute>
+        <Attribute Name="xi" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="384 9" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/7</DataItem>
+        </Attribute>
+        <Attribute Name="sig" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="384 9" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/8</DataItem>
+        </Attribute>
+        <Attribute Name="gam" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="384 9" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/9</DataItem>
+        </Attribute>
+        <Attribute Name="eta" AttributeType="Vector" Center="Node">
+          <DataItem Dimensions="125 3" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/10</DataItem>
+        </Attribute>
+        <Attribute Name="p" AttributeType="Scalar" Center="Cell">
+          <DataItem Dimensions="384 1" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/11</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="mesh" GridType="Uniform">
+        <Topology NumberOfElements="3072" TopologyType="Tetrahedron" NodesPerElement="4">
+          <DataItem Dimensions="3072 4" NumberType="UInt" Format="HDF">out-3D-convergence-bulk.h5:/Mesh/12/mesh/topology</DataItem>
+        </Topology>
+        <Geometry GeometryType="XYZ">
+          <DataItem Dimensions="729 3" Format="HDF">out-3D-convergence-bulk.h5:/Mesh/12/mesh/geometry</DataItem>
+        </Geometry>
+        <Time Value="2" />
+        <Attribute Name="u" AttributeType="Vector" Center="Cell">
+          <DataItem Dimensions="3072 3" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/12</DataItem>
+        </Attribute>
+        <Attribute Name="xi" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="3072 9" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/13</DataItem>
+        </Attribute>
+        <Attribute Name="sig" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="3072 9" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/14</DataItem>
+        </Attribute>
+        <Attribute Name="gam" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="3072 9" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/15</DataItem>
+        </Attribute>
+        <Attribute Name="eta" AttributeType="Vector" Center="Node">
+          <DataItem Dimensions="729 3" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/16</DataItem>
+        </Attribute>
+        <Attribute Name="p" AttributeType="Scalar" Center="Cell">
+          <DataItem Dimensions="3072 1" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/17</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="mesh" GridType="Uniform">
+        <Topology NumberOfElements="24576" TopologyType="Tetrahedron" NodesPerElement="4">
+          <DataItem Dimensions="24576 4" NumberType="UInt" Format="HDF">out-3D-convergence-bulk.h5:/Mesh/18/mesh/topology</DataItem>
+        </Topology>
+        <Geometry GeometryType="XYZ">
+          <DataItem Dimensions="4913 3" Format="HDF">out-3D-convergence-bulk.h5:/Mesh/18/mesh/geometry</DataItem>
+        </Geometry>
+        <Time Value="3" />
+        <Attribute Name="u" AttributeType="Vector" Center="Cell">
+          <DataItem Dimensions="24576 3" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/18</DataItem>
+        </Attribute>
+        <Attribute Name="xi" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="24576 9" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/19</DataItem>
+        </Attribute>
+        <Attribute Name="sig" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="24576 9" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/20</DataItem>
+        </Attribute>
+        <Attribute Name="gam" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="24576 9" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/21</DataItem>
+        </Attribute>
+        <Attribute Name="eta" AttributeType="Vector" Center="Node">
+          <DataItem Dimensions="4913 3" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/22</DataItem>
+        </Attribute>
+        <Attribute Name="p" AttributeType="Scalar" Center="Cell">
+          <DataItem Dimensions="24576 1" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/23</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="mesh" GridType="Uniform">
+        <Topology NumberOfElements="196608" TopologyType="Tetrahedron" NodesPerElement="4">
+          <DataItem Dimensions="196608 4" NumberType="UInt" Format="HDF">out-3D-convergence-bulk.h5:/Mesh/24/mesh/topology</DataItem>
+        </Topology>
+        <Geometry GeometryType="XYZ">
+          <DataItem Dimensions="35937 3" Format="HDF">out-3D-convergence-bulk.h5:/Mesh/24/mesh/geometry</DataItem>
+        </Geometry>
+        <Time Value="4" />
+        <Attribute Name="u" AttributeType="Vector" Center="Cell">
+          <DataItem Dimensions="196608 3" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/24</DataItem>
+        </Attribute>
+        <Attribute Name="xi" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="196608 9" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/25</DataItem>
+        </Attribute>
+        <Attribute Name="sig" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="196608 9" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/26</DataItem>
+        </Attribute>
+        <Attribute Name="gam" AttributeType="Tensor" Center="Cell">
+          <DataItem Dimensions="196608 9" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/27</DataItem>
+        </Attribute>
+        <Attribute Name="eta" AttributeType="Vector" Center="Node">
+          <DataItem Dimensions="35937 3" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/28</DataItem>
+        </Attribute>
+        <Attribute Name="p" AttributeType="Scalar" Center="Cell">
+          <DataItem Dimensions="196608 1" Format="HDF">out-3D-convergence-bulk.h5:/VisualisationVector/29</DataItem>
+        </Attribute>
+      </Grid>
+    </Grid>
+  </Domain>
+</Xdmf>
