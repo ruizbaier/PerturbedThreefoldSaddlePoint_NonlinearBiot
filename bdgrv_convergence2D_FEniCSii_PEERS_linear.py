@@ -4,10 +4,15 @@ from xii import *
 import sympy2fenics as sf
 from scipy.linalg import eigh
 import numpy as np
+from petsc4py import PETSc
 
 parameters["form_compiler"]["representation"] = "uflacs"
 parameters["form_compiler"]["cpp_optimize"] = True
 parameters["form_compiler"]["quadrature_degree"] = -1
+
+PETScOptions.set("mat_mumps_icntl_14", 1000) # memory estimate
+PETScOptions.set("mat_mumps_icntl_13", 1) # accept almost zero pivots
+PETScOptions.set("mat_mumps_cntl_1", 1e-8)
 
 fileO = XDMFFile("outputs/out-2D-convergence-bulk.xdmf")
 fileO.parameters["functions_share_mesh"] = True
